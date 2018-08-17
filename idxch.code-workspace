@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"python.unitTest.unittestEnabled": true,
+		"python.unitTest.pyTestEnabled": false,
+		"python.unitTest.nosetestsEnabled": false,
+		"python.pythonPath": "C:\\tools\\miniconda3\\envs\\proc36\\python.exe",
+	}
+}
