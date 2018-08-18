@@ -11,7 +11,7 @@ def crunch(data: list, display_strategy=lambda x: print(x)):
     cases = [pool.apply(get_path_for_case, args=(c, idx))
              for idx, c
              in enumerate(data)]
-    cases = list([get_path_for_case(c, idx) for idx, c in enumerate(data)])
+    # cases = list([get_path_for_case(c, idx) for idx, c in enumerate(data)])
     display_strategy(cases)
 
 
