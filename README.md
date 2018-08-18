@@ -1,6 +1,6 @@
 Python version: >=3.6 
 
-Install modules (ddt, multiprocess):
+Install modules (ddt):
 pip install -r env/pip.txt
 
 run tests:
