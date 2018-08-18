@@ -11,18 +11,16 @@ def crunch(data: list, display_strategy=lambda x: print(x)):
     cases = [pool.apply(get_path_for_case, args=(c, idx))
              for idx, c
              in enumerate(data)]
-    # cases = list([get_path_for_case(c, idx) for idx, c in enumerate(data)])
     display_strategy(cases)
 
 
 def get_path_for_case(case, case_no: int):
-    try:
-        row_length = int(case['rowLength'])
-    except ValueError:
-            print(f'The rowLength must be a number!')
-            return
+
+    if not is_case_valid(case):
+        return
 
     try:
+        row_length = int(case['rowLength'])
         kb = Keyboard.create_rectangular(
             keys=case['alphabet'],
             keysPerRow=row_length)
@@ -55,3 +53,25 @@ def get_path_for_case(case, case_no: int):
     case['distance'] = len([x for x in total_path if x != Keyboard.Press])
 
     return case
+
+
+def is_case_valid(case):
+    is_valid = True
+    try:
+        row_length = int(case['rowLength'])
+    except ValueError:
+            print(f'The rowLength must be a number!')
+            is_valid = False
+    except KeyError:
+            print(f'The case does not contain rowLength information!')
+            is_valid = False
+
+    try:
+        word = case['word']
+        if not word:
+            is_valid = False
+    except KeyError:
+            print(f'The case does not contain word information!')
+            is_valid = False
+
+    return is_valid
