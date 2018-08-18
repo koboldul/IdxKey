@@ -41,13 +41,12 @@ class Keyboard(object):
     def graph(self):
         return self.keyboardGraph.copy()
 
-    """ Finds the shortest path between two keys.
+    def get_shortest_path(self, k1: str, k2: str, frontier_factory):
+        """ Finds the shortest path between two keys.
         It accepts a factory function that will create
         the data structure used to explore the nodes.
         The factory has a function parameter used to calculate the score
-        for a certin path.
-    """
-    def get_shortest_path(self, k1: str, k2: str, frontier_factory):
+        for a certin path."""
         idx1 = self.keys.index(k1)
         idx2 = self.keys.index(k2)
 

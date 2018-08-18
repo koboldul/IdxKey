@@ -30,7 +30,7 @@ class KeyboardTests(unittest.TestCase):
         p = kb.get_shortest_path(k1, k2, lambda x: PriorityQueue(x))
 
         # Assert
-        self.assertEqual(p, result)    
+        self.assertEqual(p, result)
 
 if __name__ == '__main__':
     unittest.main()

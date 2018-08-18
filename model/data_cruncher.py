@@ -5,7 +5,7 @@ import multiprocessing as mp
 
 def crunch(data: list, display_strategy=lambda x: print(x)):
     if not data:
-        raise Exception('No data to crunch!')
+        raise ValueError('No data to crunch!')
 
     pool = mp.Pool(processes=4)
     cases = [pool.apply(get_path_for_case, args=(c, idx))
@@ -17,9 +17,15 @@ def crunch(data: list, display_strategy=lambda x: print(x)):
 
 def get_path_for_case(case, case_no: int):
     try:
+        row_length = int(case['rowLength'])
+    except ValueError:
+            print(f'The rowLength must be a number!')
+            return
+
+    try:
         kb = Keyboard.create_rectangular(
             keys=case['alphabet'],
-            keysPerRow=int(case['rowLength']))
+            keysPerRow=row_length)
 
         def factory(func): return PriorityQueue(func)
 
@@ -31,8 +37,8 @@ def get_path_for_case(case, case_no: int):
     except KeyError:
             print(f'The case does not contain valid information!')
             return
-    except ValueError:
-            print(f'The rowLength must be a number!')
+    except ValueError as e:
+            print(f'Could not initialize the keyboard: {e}')
             return
 
     total_path = []

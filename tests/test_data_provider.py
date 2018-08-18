@@ -48,3 +48,29 @@ class DataProvider(object):
         test_cases.append((d[3][0], d[3][2], 'q', 'q', []))
 
         return test_cases
+
+    @staticmethod
+    def full_path_data():
+        test_cases = []
+        stub1 = {
+            'alphabet': '',
+            'rowLength': 1,
+            'word': 'bar',
+            'startingFocus': 'b'}
+
+        test_cases.append(
+            (stub1,
+             [['p', 'd'], ['p', 'u']],
+             (['p', 'd', 'p', 'u', 'p'], 2)))
+
+        stub2 = {
+            'alphabet': '',
+            'rowLength': 1,
+            'word': 'TILT',
+            'startingFocus': 'Y'}
+        test_cases.append(
+            (stub2,
+             [['p', 'l'], ['p', 'r', 'u'], ['p', 'l', 'd'], ['p', 'd']],
+             (['l', 'p', 'r', 'u', 'p', 'l', 'd', 'p', 'd', 'p'], 6)))
+
+        return test_cases
